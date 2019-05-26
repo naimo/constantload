@@ -1,21 +1,3 @@
-/*
-  Fading
-
-  This example shows how to fade an LED using the analogWrite() function.
-
-  The circuit:
-  - LED attached from digital pin 9 to ground.
-
-  created 1 Nov 2008
-  by David A. Mellis
-  modified 30 Aug 2011
-  by Tom Igoe
-
-  This example code is in the public domain.
-
-  http://www.arduino.cc/en/Tutorial/Fading
-*/
-
 int CURRENT = 1000; /* mA */
 int RSHUNT = 200; /* mR */
 
@@ -27,7 +9,12 @@ void setup() {
   Serial.begin(9600);
   analogReference(INTERNAL);
 
-  analogWrite(dacPin, 120);
+  pinMode(9, OUTPUT);
+  
+  TCCR1A = _BV(COM1A1) | _BV(WGM10);
+  TCCR1B = _BV(WGM12) | _BV(CS10);
+
+  OCR1AL = 118;
 }
 
 void loop() {
