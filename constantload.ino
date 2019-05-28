@@ -44,13 +44,15 @@ void loop() {
           discharging = ARMED; 
           break;
         case '1':
-          if (discharging == ARMED){
+          if (discharging != DISARMED){
             OCR1AL = 50;
+            discharging = DISCHARGING;
           }
           break;
         case '2':
-          if (discharging == ARMED){
+          if (discharging != DISARMED){
             OCR1AL = 100;
+            discharging = DISCHARGING;
           }
           break;
       } 
